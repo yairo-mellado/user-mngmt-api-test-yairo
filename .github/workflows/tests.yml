@@ -1,0 +1,34 @@
+name: API Tests
+
+on: [push, pull_request]
+
+jobs:
+  dev-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+      - name: Run docker container
+        run: docker run -d -p 3000:3000 ghcr.io/danielsilva-loanpro/sdet-interview-challenge:latest
+      - name: Run DEV tests
+        run: npm test -- tests/dev.users.spec.ts
+
+  prod-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+      - name: Run docker container
+        run: docker run -d -p 3000:3000 ghcr.io/danielsilva-loanpro/sdet-interview-challenge:latest
+      - name: Run PROD tests
+        run: npm test -- tests/prod.users.spec.ts 
