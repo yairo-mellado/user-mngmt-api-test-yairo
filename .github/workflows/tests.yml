@@ -6,29 +6,63 @@ jobs:
   dev-tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '24'
+
       - name: Install dependencies
         run: npm install
-      - name: Run docker container
+
+      - name: Run Docker container
         run: docker run -d -p 3000:3000 ghcr.io/danielsilva-loanpro/sdet-interview-challenge:latest
+
       - name: Run DEV tests
         run: npm test -- tests/dev.users.spec.ts
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-dev
+          path: coverage/
+
+      - name: Upload JUnit report
+        uses: actions/upload-artifact@v3
+        with:
+          name: junit-dev
+          path: reports/
 
   prod-tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '24'
+
       - name: Install dependencies
         run: npm install
-      - name: Run docker container
+
+      - name: Run Docker container
         run: docker run -d -p 3000:3000 ghcr.io/danielsilva-loanpro/sdet-interview-challenge:latest
+
       - name: Run PROD tests
-        run: npm test -- tests/prod.users.spec.ts 
+        run: npm test -- tests/prod.users.spec.ts
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-prod
+          path: coverage/
+
+      - name: Upload JUnit report
+        uses: actions/upload-artifact@v3
+        with:
+          name: junit-prod
+          path: reports/
