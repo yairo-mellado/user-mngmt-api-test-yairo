@@ -24,13 +24,13 @@ jobs:
         run: npm test -- tests/dev.users.spec.ts
 
       - name: Upload coverage report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-dev
           path: coverage/
 
       - name: Upload JUnit report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: junit-dev
           path: reports/
@@ -56,13 +56,13 @@ jobs:
         run: npm test -- tests/prod.users.spec.ts
 
       - name: Upload coverage report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-prod
           path: coverage/
 
       - name: Upload JUnit report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: junit-prod
           path: reports/
