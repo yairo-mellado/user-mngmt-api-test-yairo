@@ -14,6 +14,12 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Set up Java for Allure
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: '17'
+
       - name: Install dependencies
         run: npm install
 
@@ -22,6 +28,10 @@ jobs:
 
       - name: Run DEV tests
         run: npm test -- tests/dev.users.spec.ts
+
+      - name: Generate BUGS.md
+        if: always()
+        run: npm run bugs
 
       - name: Upload coverage report
         if: always()
@@ -37,6 +47,31 @@ jobs:
           name: junit-dev
           path: reports/
 
+      - name: Generate Allure HTML report
+        if: always()
+        run: npm run allure:report
+
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-dev
+          path: allure-results/
+
+      - name: Upload Allure HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report-dev
+          path: allure-report/
+
+      - name: Upload BUGS markdown
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bugs-dev
+          path: BUGS.md
+
   prod-tests:
     runs-on: ubuntu-latest
     steps:
@@ -48,6 +83,12 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Set up Java for Allure
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: '17'
+
       - name: Install dependencies
         run: npm install
 
@@ -56,6 +97,10 @@ jobs:
 
       - name: Run PROD tests
         run: npm test -- tests/prod.users.spec.ts
+
+      - name: Generate BUGS.md
+        if: always()
+        run: npm run bugs
 
       - name: Upload coverage report
         if: always()
@@ -70,3 +115,28 @@ jobs:
         with:
           name: junit-prod
           path: reports/
+
+      - name: Generate Allure HTML report
+        if: always()
+        run: npm run allure:report
+
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-prod
+          path: allure-results/
+
+      - name: Upload Allure HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report-prod
+          path: allure-report/
+
+      - name: Upload BUGS markdown
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bugs-prod
+          path: BUGS.md

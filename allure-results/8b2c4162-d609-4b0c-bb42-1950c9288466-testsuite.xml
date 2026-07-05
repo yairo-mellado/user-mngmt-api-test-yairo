@@ -1,0 +1,79 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1783262504542' stop='1783262504611'>
+    <name>User Management API - DEV</name>
+    <title>User Management API - DEV</title>
+    <test-cases>
+        <test-case start='1783262504542' status='passed' stop='1783262504574'>
+            <name>GET /dev/users should return array</name>
+            <title>GET /dev/users should return array</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1783262504575' status='passed' stop='1783262504584'>
+            <name>POST /dev/users should create user</name>
+            <title>POST /dev/users should create user</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1783262504585' status='passed' stop='1783262504590'>
+            <name>GET /dev/users/{email} should return user</name>
+            <title>GET /dev/users/{email} should return user</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1783262504590' status='passed' stop='1783262504596'>
+            <name>PUT /dev/users/{email} should update user</name>
+            <title>PUT /dev/users/{email} should update user</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1783262504596' status='failed' stop='1783262504605'>
+            <name>DELETE /dev/users/{email} should require auth</name>
+            <title>DELETE /dev/users/{email} should require auth</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>Error: expect(received).toBe(expected) // Object.is equality
+                
+                Expected: 401
+                Received: 204</message>
+                <stack-trace>Error: expect(received).toBe(expected) // Object.is equality
+                
+                Expected: 401
+                Received: 204
+                    at Object.&lt;anonymous> (C:\Users\yairo\user-mngmt-api-test-yairo\tests\dev.users.spec.ts:33:24)
+                    at processTicksAndRejections (node:internal/process/task_queues:104:5)</stack-trace>
+            </failure>
+        </test-case>
+        <test-case start='1783262504605' status='failed' stop='1783262504611'>
+            <name>DELETE /dev/users/{email} with token should delete user</name>
+            <title>DELETE /dev/users/{email} with token should delete user</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>Error: expect(received).toBe(expected) // Object.is equality
+                
+                Expected: 204
+                Received: 404</message>
+                <stack-trace>Error: expect(received).toBe(expected) // Object.is equality
+                
+                Expected: 204
+                Received: 404
+                    at Object.&lt;anonymous> (C:\Users\yairo\user-mngmt-api-test-yairo\tests\dev.users.spec.ts:38:24)
+                    at processTicksAndRejections (node:internal/process/task_queues:104:5)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

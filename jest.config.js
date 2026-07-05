@@ -5,15 +5,17 @@ const tsJestTransformCfg = createDefaultPreset().transform;
 /** @type {import("jest").Config} **/
 module.exports = {
   testEnvironment: "node",
+  testRunner: "jest-jasmine2",
   transform: {
     ...tsJestTransformCfg,
   },
   // Activa cobertura
   collectCoverage: true,
   coverageDirectory: "coverage",
-  coverageReporters: ["text", "lcov", "json"],
+  coverageReporters: ["text", "lcov", "html", "json"],
+  setupFilesAfterEnv: ["jest-allure/dist/setup"],
 
-  // Reporte JUnit para CI/CD
+  // Reportes para CI/CD
   reporters: [
     "default",
     [
