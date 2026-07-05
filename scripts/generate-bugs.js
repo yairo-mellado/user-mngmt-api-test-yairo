@@ -19,8 +19,12 @@ if (!fs.existsSync(junitPath)) {
 const xml = fs.readFileSync(junitPath, 'utf8');
 const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '' });
 const parsed = parser.parse(xml);
-const suites = parsed.testsuites || parsed.testsuite;
+let suites = parsed.testsuites || parsed.testsuite;
 let tests = [];
+
+if (suites && suites.testsuite) {
+  suites = suites.testsuite;
+}
 
 if (Array.isArray(suites)) {
   suites.forEach((suite) => {
