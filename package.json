@@ -8,7 +8,7 @@
     "test:dev": "jest --coverage tests/dev.users.spec.ts",
     "test:prod": "jest --coverage tests/prod.users.spec.ts",
     "allure:report": "node scripts/generate-allure-report.js",
-    "allure:serve": "npx http-server allure-report -p 8080 --silent",
+    "allure:serve": "npx http-server allure-report -p 9091 --silent",
     "allure:open": "npx allure open allure-report",
     "bugs": "node scripts/generate-bugs.js"
   },

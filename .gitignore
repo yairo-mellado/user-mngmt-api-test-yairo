@@ -2,6 +2,10 @@ node_modules/
 dist/
 build/
 coverage/
+allure-results/
+allure-report/
+reports/
+BUGS.md
 *.log
 .env
 .DS_Store
