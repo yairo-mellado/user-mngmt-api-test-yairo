@@ -24,12 +24,14 @@ jobs:
         run: npm test -- tests/dev.users.spec.ts
 
       - name: Upload coverage report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: coverage-dev
           path: coverage/
 
       - name: Upload JUnit report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: junit-dev
@@ -56,12 +58,14 @@ jobs:
         run: npm test -- tests/prod.users.spec.ts
 
       - name: Upload coverage report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: coverage-prod
           path: coverage/
 
       - name: Upload JUnit report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: junit-prod

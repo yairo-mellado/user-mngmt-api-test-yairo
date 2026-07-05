@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="6" failures="2" errors="0" time="0.708">
+  <testsuite name="User Management API - DEV" errors="0" failures="2" skipped="0" timestamp="2026-07-05T13:38:39" time="0.636" tests="6">
+    <testcase classname="User Management API - DEV GET /dev/users should return array" name="User Management API - DEV GET /dev/users should return array" time="0.061">
+    </testcase>
+    <testcase classname="User Management API - DEV POST /dev/users should create user" name="User Management API - DEV POST /dev/users should create user" time="0.012">
+    </testcase>
+    <testcase classname="User Management API - DEV GET /dev/users/{email} should return user" name="User Management API - DEV GET /dev/users/{email} should return user" time="0.005">
+    </testcase>
+    <testcase classname="User Management API - DEV PUT /dev/users/{email} should update user" name="User Management API - DEV PUT /dev/users/{email} should update user" time="0.005">
+    </testcase>
+    <testcase classname="User Management API - DEV DELETE /dev/users/{email} should require auth" name="User Management API - DEV DELETE /dev/users/{email} should require auth" time="0.011">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 401
+Received: 204
+    at Object.&lt;anonymous&gt; (C:\Users\yairo\user-mngmt-api-test-yairo\tests\dev.users.spec.ts:33:24)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)</failure>
+    </testcase>
+    <testcase classname="User Management API - DEV DELETE /dev/users/{email} with token should delete user" name="User Management API - DEV DELETE /dev/users/{email} with token should delete user" time="0.005">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 204
+Received: 404
+    at Object.&lt;anonymous&gt; (C:\Users\yairo\user-mngmt-api-test-yairo\tests\dev.users.spec.ts:38:24)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)</failure>
+    </testcase>
+  </testsuite>
+</testsuites>
