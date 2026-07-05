@@ -71,6 +71,7 @@ jobs:
         with:
           name: bugs-dev
           path: BUGS.md
+          if-no-files-found: ignore
 
   prod-tests:
     runs-on: ubuntu-latest
@@ -140,3 +141,4 @@ jobs:
         with:
           name: bugs-prod
           path: BUGS.md
+          if-no-files-found: ignore

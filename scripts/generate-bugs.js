@@ -6,7 +6,13 @@ const junitPath = path.resolve(__dirname, '../reports/junit.xml');
 const outputPath = path.resolve(__dirname, '../BUGS.md');
 
 if (!fs.existsSync(junitPath)) {
-  console.error('No se encontró reports/junit.xml. Ejecuta npm test primero.');
+  const lines = [
+    '# BUGS',
+    '',
+    'No se encontró reports/junit.xml. Ejecuta npm test primero.',
+  ];
+  fs.writeFileSync(outputPath, lines.join('\n'));
+  console.warn('No se encontró reports/junit.xml. Se generó BUGS.md vacío con el mensaje.');
   process.exit(0);
 }
 
@@ -29,8 +35,8 @@ if (Array.isArray(suites)) {
 const failures = tests.filter((test) => test.failure || test.error);
 
 const lines = [
-  '# BUGS
-',
+  '# BUGS',
+  '',
   'Los siguientes tests fallaron o tuvieron errores durante la ejecución:',
   '',
 ];
