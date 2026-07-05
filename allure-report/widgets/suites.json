@@ -1,1 +1,1 @@
-{"total":1,"items":[{"uid":"1341677d03afe9f040b9794e2bca8fe7","name":"User Management API - DEV","statistic":{"failed":2,"broken":0,"skipped":0,"passed":4,"unknown":0,"total":6}}]}
+{"total":2,"items":[{"uid":"1341677d03afe9f040b9794e2bca8fe7","name":"User Management API - DEV","statistic":{"failed":2,"broken":0,"skipped":0,"passed":4,"unknown":0,"total":6}},{"uid":"e448c079373394c7c92fc17a393d3878","name":"User Management API - PROD","statistic":{"failed":2,"broken":0,"skipped":0,"passed":4,"unknown":0,"total":6}}]}

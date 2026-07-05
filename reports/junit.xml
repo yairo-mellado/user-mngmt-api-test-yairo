@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="12" failures="4" errors="0" time="0.593">
-  <testsuite name="User Management API - DEV" errors="0" failures="2" skipped="0" timestamp="2026-07-05T16:01:10" time="0.338" tests="6">
-    <testcase classname="User Management API - DEV GET /dev/users should return array" name="User Management API - DEV GET /dev/users should return array" time="0.025">
+<testsuites name="jest tests" tests="12" failures="4" errors="0" time="0.536">
+  <testsuite name="User Management API - DEV" errors="0" failures="2" skipped="0" timestamp="2026-07-05T16:25:27" time="0.338" tests="6">
+    <testcase classname="User Management API - DEV GET /dev/users should return array" name="User Management API - DEV GET /dev/users should return array" time="0.028">
     </testcase>
-    <testcase classname="User Management API - DEV POST /dev/users should create user" name="User Management API - DEV POST /dev/users should create user" time="0.008">
+    <testcase classname="User Management API - DEV POST /dev/users should create user" name="User Management API - DEV POST /dev/users should create user" time="0.01">
     </testcase>
-    <testcase classname="User Management API - DEV GET /dev/users/{email} should return user" name="User Management API - DEV GET /dev/users/{email} should return user" time="0.005">
+    <testcase classname="User Management API - DEV GET /dev/users/{email} should return user" name="User Management API - DEV GET /dev/users/{email} should return user" time="0.004">
     </testcase>
     <testcase classname="User Management API - DEV PUT /dev/users/{email} should update user" name="User Management API - DEV PUT /dev/users/{email} should update user" time="0.005">
     </testcase>
@@ -26,10 +26,10 @@ Received: 404
     at processTicksAndRejections (node:internal/process/task_queues:104:5)</failure>
     </testcase>
   </testsuite>
-  <testsuite name="User Management API - PROD" errors="0" failures="2" skipped="0" timestamp="2026-07-05T16:01:11" time="0.152" tests="6">
-    <testcase classname="User Management API - PROD GET /prod/users should return array" name="User Management API - PROD GET /prod/users should return array" time="0.006">
+  <testsuite name="User Management API - PROD" errors="0" failures="2" skipped="0" timestamp="2026-07-05T16:25:27" time="0.102" tests="6">
+    <testcase classname="User Management API - PROD GET /prod/users should return array" name="User Management API - PROD GET /prod/users should return array" time="0.005">
     </testcase>
-    <testcase classname="User Management API - PROD POST /prod/users should create user" name="User Management API - PROD POST /prod/users should create user" time="0.004">
+    <testcase classname="User Management API - PROD POST /prod/users should create user" name="User Management API - PROD POST /prod/users should create user" time="0.005">
       <failure>Error: expect(received).toBe(expected) // Object.is equality
 
 Expected: 201
@@ -37,13 +37,13 @@ Received: 500
     at Object.&lt;anonymous&gt; (C:\Users\yairo\user-mngmt-api-test-yairo\tests\prod.users.spec.ts:14:24)
     at processTicksAndRejections (node:internal/process/task_queues:104:5)</failure>
     </testcase>
-    <testcase classname="User Management API - PROD GET /prod/users/{email} should return user" name="User Management API - PROD GET /prod/users/{email} should return user" time="0.004">
+    <testcase classname="User Management API - PROD GET /prod/users/{email} should return user" name="User Management API - PROD GET /prod/users/{email} should return user" time="0.005">
     </testcase>
     <testcase classname="User Management API - PROD PUT /prod/users/{email} should update user" name="User Management API - PROD PUT /prod/users/{email} should update user" time="0.005">
     </testcase>
-    <testcase classname="User Management API - PROD DELETE /prod/users/{email} should require auth" name="User Management API - PROD DELETE /prod/users/{email} should require auth" time="0.006">
+    <testcase classname="User Management API - PROD DELETE /prod/users/{email} should require auth" name="User Management API - PROD DELETE /prod/users/{email} should require auth" time="0.004">
     </testcase>
-    <testcase classname="User Management API - PROD DELETE /prod/users/{email} with token should delete user" name="User Management API - PROD DELETE /prod/users/{email} with token should delete user" time="0.006">
+    <testcase classname="User Management API - PROD DELETE /prod/users/{email} with token should delete user" name="User Management API - PROD DELETE /prod/users/{email} with token should delete user" time="0.005">
       <failure>Error: expect(received).toBe(expected) // Object.is equality
 
 Expected: 204
