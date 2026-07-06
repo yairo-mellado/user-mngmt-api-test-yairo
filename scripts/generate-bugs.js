@@ -9,10 +9,10 @@ if (!fs.existsSync(junitPath)) {
   const lines = [
     '# BUGS',
     '',
-    'No se encontró reports/junit.xml. Ejecuta npm test primero.',
+    'reports/junit.xml not found. Run npm test first.',
   ];
   fs.writeFileSync(outputPath, lines.join('\n'));
-  console.warn('No se encontró reports/junit.xml. Se generó BUGS.md vacío con el mensaje.');
+  console.warn('reports/junit.xml not found. Generated empty BUGS.md with the message.');
   process.exit(0);
 }
 
@@ -41,12 +41,12 @@ const failures = tests.filter((test) => test.failure || test.error);
 const lines = [
   '# BUGS',
   '',
-  'Los siguientes tests fallaron o tuvieron errores durante la ejecución:',
+  'The following tests failed or had errors during execution:',
   '',
 ];
 
 if (failures.length === 0) {
-  lines.push('No se detectaron fallos en el reporte JUnit.');
+  lines.push('No failures were detected in the JUnit report.');
 } else {
   failures.forEach((test, index) => {
     const name = test.name || test['@_name'] || 'unknown';
@@ -55,7 +55,7 @@ if (failures.length === 0) {
     const message = failure['@_message'] || failure.message || failure['#text'] || JSON.stringify(failure);
     lines.push(`## ${index + 1}. ${classname} › ${name}`);
     lines.push('');
-    lines.push(`- Mensaje: ${message}`);
+    lines.push(`- Message: ${message}`);
     if (failure['#text']) {
       lines.push('');
       lines.push('```text');
@@ -67,4 +67,4 @@ if (failures.length === 0) {
 }
 
 fs.writeFileSync(outputPath, lines.join('\n'));
-console.log(`BUGS.md generado en ${outputPath}`);
+console.log(`BUGS.md generated at ${outputPath}`);

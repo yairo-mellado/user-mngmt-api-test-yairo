@@ -9,13 +9,13 @@ module.exports = {
   transform: {
     ...tsJestTransformCfg,
   },
-  // Activa cobertura
+  // Enable coverage
   collectCoverage: true,
   coverageDirectory: "coverage",
   coverageReporters: ["text", "lcov", "html", "json"],
   setupFilesAfterEnv: ["jest-allure/dist/setup"],
 
-  // Reportes para CI/CD
+  // Reports for CI/CD
   reporters: [
     "default",
     [
