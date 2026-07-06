@@ -14,11 +14,11 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Set up Java for Allure
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
+      - name: Install Java 17 (OpenJDK)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-17-jdk
+          echo "JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: npm install
@@ -84,11 +84,11 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Set up Java for Allure
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
+      - name: Install Java 17 (OpenJDK)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-17-jdk
+          echo "JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: npm install
