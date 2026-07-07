@@ -27,7 +27,7 @@ jobs:
         run: docker run -d -p 3000:3000 ghcr.io/danielsilva-loanpro/sdet-interview-challenge:latest
 
       - name: Run DEV tests
-        run: npm test -- tests/dev.users.spec.ts
+        run: npm test -- --runInBand tests/dev.users.spec.ts
 
       - name: Generate BUGS.md
         if: always()
@@ -97,7 +97,7 @@ jobs:
         run: docker run -d -p 3000:3000 ghcr.io/danielsilva-loanpro/sdet-interview-challenge:latest
 
       - name: Run PROD tests
-        run: npm test -- tests/prod.users.spec.ts
+        run: npm test -- --runInBand tests/prod.users.spec.ts
 
       - name: Generate BUGS.md
         if: always()

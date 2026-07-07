@@ -1,48 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="12" failures="3" errors="0" time="1.215">
-  <testsuite name="User Management API - DEV" errors="0" failures="2" skipped="0" timestamp="2026-07-06T15:27:00" time="0.78" tests="6">
-    <testcase classname="User Management API - DEV GET /dev/users should return array" name="User Management API - DEV GET /dev/users should return array" time="0.064">
+<testsuites name="jest tests" tests="24" failures="8" errors="0" time="0.762">
+  <testsuite name="User Management API - DEV" errors="0" failures="4" skipped="0" timestamp="2026-07-07T23:50:19" time="0.475" tests="12">
+    <testcase classname="User Management API - DEV GET /users should return an array" name="User Management API - DEV GET /users should return an array" time="0.007">
     </testcase>
-    <testcase classname="User Management API - DEV POST /dev/users should create user" name="User Management API - DEV POST /dev/users should create user" time="0.013">
+    <testcase classname="User Management API - DEV POST /users should create a user" name="User Management API - DEV POST /users should create a user" time="0.008">
     </testcase>
-    <testcase classname="User Management API - DEV GET /dev/users/{email} should return user" name="User Management API - DEV GET /dev/users/{email} should return user" time="0.008">
+    <testcase classname="User Management API - DEV POST /users should reject invalid request payload" name="User Management API - DEV POST /users should reject invalid request payload" time="0.005">
     </testcase>
-    <testcase classname="User Management API - DEV PUT /dev/users/{email} should update user" name="User Management API - DEV PUT /dev/users/{email} should update user" time="0.007">
+    <testcase classname="User Management API - DEV POST /users should reject duplicate email" name="User Management API - DEV POST /users should reject duplicate email" time="0.007">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 409
+Received: 500
+    at Object.toBe (C:\Users\yairo\user-mngmt-api-test-yairo\tests\user-management.contract.ts:57:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)</failure>
     </testcase>
-    <testcase classname="User Management API - DEV DELETE /dev/users/{email} should require auth" name="User Management API - DEV DELETE /dev/users/{email} should require auth" time="0.015">
+    <testcase classname="User Management API - DEV GET /users/{email} should return an existing user" name="User Management API - DEV GET /users/{email} should return an existing user" time="0.007">
+    </testcase>
+    <testcase classname="User Management API - DEV GET /users/{email} should return 404 for an unknown user" name="User Management API - DEV GET /users/{email} should return 404 for an unknown user" time="0.005">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 404
+Received: 500
+    at Object.toBe (C:\Users\yairo\user-mngmt-api-test-yairo\tests\user-management.contract.ts:74:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)</failure>
+    </testcase>
+    <testcase classname="User Management API - DEV PUT /users/{email} should update a user" name="User Management API - DEV PUT /users/{email} should update a user" time="0.006">
+    </testcase>
+    <testcase classname="User Management API - DEV PUT /users/{email} should reject invalid request payload" name="User Management API - DEV PUT /users/{email} should reject invalid request payload" time="0.006">
+    </testcase>
+    <testcase classname="User Management API - DEV PUT /users/{email} should return 404 for an unknown user" name="User Management API - DEV PUT /users/{email} should return 404 for an unknown user" time="0.005">
+    </testcase>
+    <testcase classname="User Management API - DEV DELETE /users/{email} should require auth" name="User Management API - DEV DELETE /users/{email} should require auth" time="0.008">
       <failure>Error: expect(received).toBe(expected) // Object.is equality
 
 Expected: 401
 Received: 204
-    at Object.&lt;anonymous&gt; (C:\Users\yairo\user-mngmt-api-test-yairo\tests\dev.users.spec.ts:33:24)
+    at Object.toBe (C:\Users\yairo\user-mngmt-api-test-yairo\tests\user-management.contract.ts:104:26)
     at processTicksAndRejections (node:internal/process/task_queues:104:5)</failure>
     </testcase>
-    <testcase classname="User Management API - DEV DELETE /dev/users/{email} with token should delete user" name="User Management API - DEV DELETE /dev/users/{email} with token should delete user" time="0.007">
+    <testcase classname="User Management API - DEV DELETE /users/{email} should return 404 for an unknown user when authenticated" name="User Management API - DEV DELETE /users/{email} should return 404 for an unknown user when authenticated" time="0.006">
+    </testcase>
+    <testcase classname="User Management API - DEV DELETE /users/{email} with token should delete user" name="User Management API - DEV DELETE /users/{email} with token should delete user" time="0.004">
       <failure>Error: expect(received).toBe(expected) // Object.is equality
 
 Expected: 204
 Received: 404
-    at Object.&lt;anonymous&gt; (C:\Users\yairo\user-mngmt-api-test-yairo\tests\dev.users.spec.ts:38:24)
+    at Object.toBe (C:\Users\yairo\user-mngmt-api-test-yairo\tests\user-management.contract.ts:117:26)
     at processTicksAndRejections (node:internal/process/task_queues:104:5)</failure>
     </testcase>
   </testsuite>
-  <testsuite name="User Management API - PROD" errors="0" failures="1" skipped="0" timestamp="2026-07-06T15:27:01" time="0.165" tests="6">
-    <testcase classname="User Management API - PROD GET /prod/users should return array" name="User Management API - PROD GET /prod/users should return array" time="0.018">
+  <testsuite name="User Management API - PROD" errors="0" failures="4" skipped="0" timestamp="2026-07-07T23:50:19" time="0.175" tests="12">
+    <testcase classname="User Management API - PROD GET /users should return an array" name="User Management API - PROD GET /users should return an array" time="0.004">
     </testcase>
-    <testcase classname="User Management API - PROD POST /prod/users should create user" name="User Management API - PROD POST /prod/users should create user" time="0.01">
+    <testcase classname="User Management API - PROD POST /users should create a user" name="User Management API - PROD POST /users should create a user" time="0.008">
     </testcase>
-    <testcase classname="User Management API - PROD GET /prod/users/{email} should return user" name="User Management API - PROD GET /prod/users/{email} should return user" time="0.006">
+    <testcase classname="User Management API - PROD POST /users should reject invalid request payload" name="User Management API - PROD POST /users should reject invalid request payload" time="0.004">
     </testcase>
-    <testcase classname="User Management API - PROD PUT /prod/users/{email} should update user" name="User Management API - PROD PUT /prod/users/{email} should update user" time="0.007">
+    <testcase classname="User Management API - PROD POST /users should reject duplicate email" name="User Management API - PROD POST /users should reject duplicate email" time="0.007">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 409
+Received: 500
+    at Object.toBe (C:\Users\yairo\user-mngmt-api-test-yairo\tests\user-management.contract.ts:57:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)</failure>
     </testcase>
-    <testcase classname="User Management API - PROD DELETE /prod/users/{email} should require auth" name="User Management API - PROD DELETE /prod/users/{email} should require auth" time="0.005">
+    <testcase classname="User Management API - PROD GET /users/{email} should return an existing user" name="User Management API - PROD GET /users/{email} should return an existing user" time="0.005">
     </testcase>
-    <testcase classname="User Management API - PROD DELETE /prod/users/{email} with token should delete user" name="User Management API - PROD DELETE /prod/users/{email} with token should delete user" time="0.006">
+    <testcase classname="User Management API - PROD GET /users/{email} should return 404 for an unknown user" name="User Management API - PROD GET /users/{email} should return 404 for an unknown user" time="0.005">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 404
+Received: 500
+    at Object.toBe (C:\Users\yairo\user-mngmt-api-test-yairo\tests\user-management.contract.ts:74:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)</failure>
+    </testcase>
+    <testcase classname="User Management API - PROD PUT /users/{email} should update a user" name="User Management API - PROD PUT /users/{email} should update a user" time="0.005">
+    </testcase>
+    <testcase classname="User Management API - PROD PUT /users/{email} should reject invalid request payload" name="User Management API - PROD PUT /users/{email} should reject invalid request payload" time="0.004">
+    </testcase>
+    <testcase classname="User Management API - PROD PUT /users/{email} should return 404 for an unknown user" name="User Management API - PROD PUT /users/{email} should return 404 for an unknown user" time="0.004">
+    </testcase>
+    <testcase classname="User Management API - PROD DELETE /users/{email} should require auth" name="User Management API - PROD DELETE /users/{email} should require auth" time="0.004">
+    </testcase>
+    <testcase classname="User Management API - PROD DELETE /users/{email} should return 404 for an unknown user when authenticated" name="User Management API - PROD DELETE /users/{email} should return 404 for an unknown user when authenticated" time="0.004">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 404
+Received: 401
+    at Object.toBe (C:\Users\yairo\user-mngmt-api-test-yairo\tests\user-management.contract.ts:111:26)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)</failure>
+    </testcase>
+    <testcase classname="User Management API - PROD DELETE /users/{email} with token should delete user" name="User Management API - PROD DELETE /users/{email} with token should delete user" time="0.004">
       <failure>Error: expect(received).toBe(expected) // Object.is equality
 
 Expected: 204
 Received: 401
-    at Object.&lt;anonymous&gt; (C:\Users\yairo\user-mngmt-api-test-yairo\tests\prod.users.spec.ts:38:24)
+    at Object.toBe (C:\Users\yairo\user-mngmt-api-test-yairo\tests\user-management.contract.ts:117:26)
     at processTicksAndRejections (node:internal/process/task_queues:104:5)</failure>
     </testcase>
   </testsuite>

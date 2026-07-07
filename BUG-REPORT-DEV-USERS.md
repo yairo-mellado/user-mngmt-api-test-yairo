@@ -1,7 +1,7 @@
-# Bug Report: DEV DELETE /dev/users/{email}
+# Bug Report: DEV user management contract failures
 
 - **Bug ID:** QA-DEV-001
-- **Summary:** DELETE `/dev/users/{email}` does not enforce authentication and returns incorrect status codes.
+- **Summary:** The DEV user management API does not consistently return the expected status codes for validation, not-found, and delete authorization scenarios.
 - **Component:** User Management API - DEV
 - **Environment:** Local API at `http://localhost:3000`
 - **Severity:** High
@@ -9,38 +9,46 @@
 
 ## Preconditions
 
-1. The DEV user management API is running locally.
-2. The test user `lpotter@example.com` exists or is created by previous test setup.
+1. The DEV API is running locally.
+2. The test suite can create and delete users through `/dev/users`.
 
 ## Steps to Reproduce
 
-1. Send an unauthenticated DELETE request to `/dev/users/lpotter@example.com`.
-2. Observe the response status code.
-3. Send an authenticated DELETE request to `/dev/users/lpotter@example.com` using a valid authorization token.
-4. Observe the response status code.
+1. Create a user via `POST /dev/users`.
+2. Submit a duplicate create request with the same email.
+3. Request a user that does not exist using `GET /dev/users/{email}`.
+4. Send an unauthenticated `DELETE /dev/users/{email}` request.
+5. Send an authenticated `DELETE /dev/users/{email}` request with a valid token.
 
 ## Actual Result
 
-- Unauthenticated DELETE returned **204 No Content** instead of rejecting the request.
-- Authenticated DELETE returned **404 Not Found** instead of successfully deleting the user.
+- Duplicate email creation returned **500 Internal Server Error** instead of **409 Conflict**.
+- Fetching a missing user returned **500 Internal Server Error** instead of **404 Not Found**.
+- Unauthenticated delete returned **204 No Content** instead of **401 Unauthorized**.
+- Authenticated delete returned **404 Not Found** instead of **204 No Content**.
 
 ## Expected Result
 
-- Unauthenticated DELETE should return **401 Unauthorized**.
-- Authenticated DELETE should return **204 No Content** after successfully deleting the user.
+- Duplicate email should return **409 Conflict** with an error payload.
+- Missing users should return **404 Not Found** with an error payload.
+- Unauthenticated delete should return **401 Unauthorized**.
+- Authenticated delete should return **204 No Content** after successful deletion.
 
 ## Test Coverage
 
 - `tests/dev.users.spec.ts`
-  - `DELETE /dev/users/{email} should require auth`
-  - `DELETE /dev/users/{email} with token should delete user`
+- `tests/user-management.contract.ts`
+  - `POST /users should reject duplicate email`
+  - `GET /users/{email} should return 404 for an unknown user`
+  - `DELETE /users/{email} should require auth`
+  - `DELETE /users/{email} with token should delete user`
 
 ## Details
 
-- Failure occurred in `tests/dev.users.spec.ts` at lines 33 and 38.
-- The test assertion failures show mismatched status codes for both unauthorized and authorized delete flows.
+- The latest review confirmed that DEV is failing multiple contract expectations beyond the original delete flow.
+- These issues suggest missing or incorrect handling for validation errors, missing-resource errors, and delete authorization.
 
 ## Notes
 
-- The two defects are related to route authorization and delete behavior for the DEV endpoint.
-- The root cause may be missing auth middleware for unauthenticated requests or incorrect resource handling when the request is authorized.
+- The defects appear to be related to route-level validation, error handling, and authentication middleware for the DEV environment.
+- The behavior should be aligned with the OpenAPI contract and the shared user-management test scenarios.
