@@ -178,7 +178,11 @@ export function testUserManagementApi({ label, prefix }: EnvironmentConfig) {
     });
 
     it("DELETE /users/{email} should require auth", async () => {
-      const res = await request(BASE_URL).delete(`${basePath}/${seededUser.email}`);
+      const unauthDeleteEmail = `delete-unauth-${Date.now()}-${Math.random().toString(36).slice(2, 8)}@example.com`;
+      const createRes = await request(BASE_URL).post(basePath).send(buildUser(unauthDeleteEmail));
+      expect(createRes.status).toBe(201);
+
+      const res = await request(BASE_URL).delete(`${basePath}/${unauthDeleteEmail}`);
       expect(res.status).toBe(401);
       expect(res.body).toHaveProperty("error");
     });
@@ -191,7 +195,11 @@ export function testUserManagementApi({ label, prefix }: EnvironmentConfig) {
     });
 
     it("DELETE /users/{email} with token should delete user", async () => {
-      const res = await request(BASE_URL).delete(`${basePath}/${seededUser.email}`).set("Authorization", `Bearer ${TOKEN}`);
+      const authDeleteEmail = `delete-auth-${Date.now()}-${Math.random().toString(36).slice(2, 8)}@example.com`;
+      const createRes = await request(BASE_URL).post(basePath).send(buildUser(authDeleteEmail));
+      expect(createRes.status).toBe(201);
+
+      const res = await request(BASE_URL).delete(`${basePath}/${authDeleteEmail}`).set("Authorization", `Bearer ${TOKEN}`);
       expect(res.status).toBe(204);
     });
 

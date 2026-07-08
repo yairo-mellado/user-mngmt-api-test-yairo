@@ -59,6 +59,23 @@
   - `GET /users/{email} should return 404 for an unknown user`
   - `DELETE /users/{email} with token should delete user`
 
+## Test Data / Sample Payloads Used
+
+- Duplicate-email scenario: `{"name":"Test User","email":"seed-prod@example.com","age":30}` submitted twice.
+- Missing-user scenario: `GET /prod/users/missing-prod@example.com`.
+- Invalid create payload samples:
+  - `{"name":"No Email","age":30}`
+  - `{"name":"Bad Email","email":"not-an-email","age":30}`
+  - `{"email":"missing-name-prod@example.com","age":30}`
+  - `{"name":"Missing Age","email":"missing-age-prod@example.com"}`
+- Boundary-validation samples: age values `0`, `151`, `-1`, `12.5`, and `"30"`.
+- Delete-auth sample: authenticated delete against `delete-auth-<timestamp>@example.com`.
+
+## Latest Validation Evidence
+
+- The latest `npm test` run reported 2 failed suites, 11 failed tests, and 25 passed tests.
+- The failures were concentrated in validation, duplicate-email handling, missing-resource handling, and delete authorization behavior for PROD.
+
 ## Details
 
 - The latest review showed that PROD is also failing multiple contract expectations beyond the earlier delete-auth issue.

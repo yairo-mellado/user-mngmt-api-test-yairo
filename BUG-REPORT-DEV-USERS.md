@@ -63,6 +63,23 @@
   - `DELETE /users/{email] should require auth`
   - `DELETE /users/{email} with token should delete user`
 
+## Test Data / Sample Payloads Used
+
+- Duplicate-email scenario: `{"name":"Test User","email":"seed-dev@example.com","age":30}` submitted twice.
+- Missing-user scenario: `GET /dev/users/missing-dev@example.com`.
+- Invalid create payload samples:
+  - `{"name":"No Email","age":30}`
+  - `{"name":"Bad Email","email":"not-an-email","age":30}`
+  - `{"email":"missing-name-dev@example.com","age":30}`
+  - `{"name":"Missing Age","email":"missing-age-dev@example.com"}`
+- Boundary-validation samples: age values `0`, `151`, `-1`, `12.5`, and `"30"`.
+- Delete-auth samples: unauthenticated delete against `delete-unauth-<timestamp>@example.com` and authenticated delete against `delete-auth-<timestamp>@example.com`.
+
+## Latest Validation Evidence
+
+- The latest `npm test` run reported 2 failed suites, 11 failed tests, and 25 passed tests.
+- The failures were concentrated in validation, duplicate-email handling, missing-resource handling, and delete authorization behavior for DEV.
+
 ## Details
 
 - The latest review confirmed that DEV is failing multiple contract expectations beyond the original delete flow.
